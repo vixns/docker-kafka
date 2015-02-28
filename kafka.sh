@@ -15,7 +15,13 @@ if [ -z "$KAFKA_BROKER_ID"]
 then
   if [ "$KAFKA_BROKER_ID_AS_HOST" = "true" ]
   	then
-      export KAFKA_BROKER_ID=$(dig +short a ${HOST} | tr -d '.')
+  	  if expr "$HOST" : '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null; then
+        #$HOST is an ip address
+        export KAFKA_BROKER_ID=$(echo ${HOST} | tr -d '.')
+	  else
+	  	#otherwise resolve it
+        export KAFKA_BROKER_ID=$(dig +short a ${HOST} | tr -d '.')
+      fi
   else
       export KAFKA_BROKER_ID=$(echo ${KAFKA_ADVERTISED_HOST_NAME} | tr -d '.')
   fi
