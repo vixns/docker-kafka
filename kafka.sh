@@ -3,7 +3,7 @@
 if [ -z "$KAFKA_ZOOKEEPER_CONNECT" ]
 then
   # ask consul
-  export KAFKA_ZOOKEEPER_CONNECT=$(curl -s -XGET http://consul.service.consul:8500/v1/health/service/zookeeper\?passing | jq -r '[.[] | "\(.Service .Address):\(.Service .Port)" ] | join(",")')
+  export KAFKA_ZOOKEEPER_CONNECT=$(dig-srv ${ZOOKEEPER_FQDN-zookeeper.service.consul})
 fi
 
 if [ -z "$KAFKA_ADVERTISED_HOST_NAME" ]
