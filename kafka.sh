@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -z "$KAFKA_ZOOKEEPER_CONNECT" ]
 then
