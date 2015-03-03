@@ -13,7 +13,7 @@ fi
 
 if [ -z "$KAFKA_BROKER_ID"]
 then
-  if [ "$KAFKA_BROKER_ID_AS_HOST" = "true" ]
+  if [ "$BROKER_ID_AS_HOST" = "true" ]
   	then
   	  if expr "$HOST" : '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null; then
         #$HOST is an ip address
