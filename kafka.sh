@@ -42,6 +42,8 @@ do
 	fi
 done
 
+sed -r -i "s@log4j.rootLogger=INFO@log4j.rootLogger=WARN@" $KAFKA_HOME/config/log4j.properties
+
 export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$KAFKA_HOME/config/log4j.properties"
 export KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
 
